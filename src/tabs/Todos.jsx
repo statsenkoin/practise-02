@@ -17,6 +17,12 @@ export class Todos extends Component {
     }));
   };
 
+  deletetodo = idTodo => {
+    this.setState(prev => ({
+      todos: prev.todos.filter(({ id }) => id !== idTodo),
+    }));
+  };
+
   render() {
     const { todos } = this.state;
     return (
@@ -25,7 +31,12 @@ export class Todos extends Component {
         <Grid>
           {todos.map(({ id, text }, index) => (
             <GridItem key={id}>
-              <Todo text={text} index={index + 1} />
+              <Todo
+                id={id}
+                text={text}
+                index={index + 1}
+                deletetodo={this.deletetodo}
+              />
             </GridItem>
           ))}
         </Grid>
